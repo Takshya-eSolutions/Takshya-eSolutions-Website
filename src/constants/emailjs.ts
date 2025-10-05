@@ -3,16 +3,16 @@
 
 export const EMAILJS_CONFIG = {
   // Service ID from EmailJS dashboard
-  SERVICE_ID: 'service_rowb4lt', // Replace with actual service ID
+  SERVICE_ID: 'service_vov5ibb', // Replace with actual service ID
   
   // Template ID from EmailJS dashboard
-  TEMPLATE_ID: 'template_f7h75ew', // Replace with actual template ID
+  TEMPLATE_ID: 'template_c8fe955', // Replace with actual template ID
   
   // Public Key from EmailJS dashboard
-  PUBLIC_KEY: 'DOAe6J06qN3KsfjdU', // Replace with actual public key
+  PUBLIC_KEY: '7Vj1Amq0zKVFAA0KH', // Replace with actual public key
   
   // User ID (optional, can be same as public key)
-  USER_ID: 'DOAe6J06qN3KsfjdU', // Replace with actual user ID
+  USER_ID: '7Vj1Amq0zKVFAA0KH', // Replace with actual user ID
 };
 
 // Email template parameters mapping
@@ -28,5 +28,5 @@ export const EMAIL_TEMPLATE_PARAMS = {
 // Default recipient information
 export const DEFAULT_RECIPIENT = {
   name: 'Takshya eSolutions Team',
-  email: 'contact@takshyaesolutions.com', // Replace with actual contact email
+  email: 'takshya.esolutions@gmail.com', // Replace with actual contact email
 };

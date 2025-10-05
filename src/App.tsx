@@ -31,7 +31,7 @@ function Home() {
 
 export default function App() {
   return (
-    <Router basename="/Takshya-eSolutions-Website">   {/* 👈 add this line */}
+    <Router>   {/* 👈 add this line */}
       <div className="min-h-screen bg-background relative">
         <ParticleBackground />
         <Routes>

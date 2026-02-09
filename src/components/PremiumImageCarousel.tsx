@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, PanInfo } from "motion/react";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { Button } from "./ui/button";
@@ -57,6 +57,7 @@ export function PremiumImageCarousel({
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [dragConstraint, setDragConstraint] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
 
@@ -100,8 +101,11 @@ export function PremiumImageCarousel({
     return () => clearInterval(interval);
   }, [isPlaying, isHovered, nextSlide, autoAdvanceInterval]);
 
-  // Keyboard navigation
+  // Keyboard navigation (scoped to carousel only)
   useEffect(() => {
+    const carouselElement = carouselRef.current;
+    if (!carouselElement) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
         prevSlide();
@@ -113,15 +117,17 @@ export function PremiumImageCarousel({
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    carouselElement.addEventListener("keydown", handleKeyDown);
+    return () => carouselElement.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, prevSlide, togglePlayPause]);
 
   const currentImage = carouselImages[currentIndex];
 
   return (
     <div 
-      className={`relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-muted to-muted/50 border border-border/20 group ${className}`}
+      ref={carouselRef}
+      tabIndex={0}
+      className={`relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-muted to-muted/50 border border-border/20 group focus:outline-none focus:ring-2 focus:ring-primary/50 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -65,10 +65,20 @@ export function ContactSection() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    // Explicitly preserve the value including spaces
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Additional handler to ensure spaces are captured
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    // This ensures space key is not prevented by any parent handlers
+    if (e.key === ' ') {
+      e.stopPropagation();
+    }
   };
 
   return (
@@ -129,8 +139,10 @@ export function ContactSection() {
                       <Input
                         id="name"
                         name="name"
+                        type="text"
                         value={formData.name}
                         onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
                         className="h-12"
                         placeholder={contactContent.form.fields.name.placeholder}
                         required
@@ -150,6 +162,7 @@ export function ContactSection() {
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
                         className="h-12"
                         placeholder={contactContent.form.fields.email.placeholder}
                         required
@@ -169,6 +182,7 @@ export function ContactSection() {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
+                      onKeyDown={handleKeyDown}
                       className="h-12"
                       placeholder={contactContent.form.fields.company.placeholder}
                     />
@@ -187,6 +201,7 @@ export function ContactSection() {
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
+                      onKeyDown={handleKeyDown}
                       placeholder={contactContent.form.fields.message.placeholder}
                       required
                     />

@@ -8,6 +8,7 @@ export interface Service {
   gradient: string;
   iconBg: string;
   iconColor: string;
+  comingSoon?: boolean;
 }
 
 export const services: Service[] = [
@@ -54,6 +55,20 @@ export const services: Service[] = [
     iconColor: "text-yellow-600"
   },
   {
+    icon: Cloud,
+    title: "Cloud & DevOps",
+    description: "Move your business to the cloud with cost-effective hosting, backups, and automation so your services stay fast and reliable.",
+    features: [
+      "Affordable Cloud Setup",
+      "Data Backup & Recovery",
+      "Automated Deployments",
+      "Scalable Hosting Solutions"
+    ],
+    gradient: "from-cyan-500/10 to-cyan-600/10",
+    iconBg: "from-cyan-100 to-cyan-200",
+    iconColor: "text-cyan-600"
+  },
+  {
     icon: BarChart3,
     title: "Data & Analytics",
     description: "Make informed decisions by turning your sales and business data into simple, easy-to-understand dashboards and reports.",
@@ -65,7 +80,8 @@ export const services: Service[] = [
     ],
     gradient: "from-indigo-500/10 to-indigo-600/10",
     iconBg: "from-indigo-100 to-indigo-200",
-    iconColor: "text-indigo-600"
+    iconColor: "text-indigo-600",
+    comingSoon: true
   },
   {
     icon: Shield,
@@ -79,22 +95,10 @@ export const services: Service[] = [
     ],
     gradient: "from-purple-500/10 to-purple-600/10",
     iconBg: "from-purple-100 to-purple-200",
-    iconColor: "text-purple-600"
+    iconColor: "text-purple-600",
+    comingSoon: true
   },
-  {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    description: "Move your business to the cloud with cost-effective hosting, backups, and automation so your services stay fast and reliable.",
-    features: [
-      "Affordable Cloud Setup",
-      "Data Backup & Recovery",
-      "Automated Deployments",
-      "Scalable Hosting Solutions"
-    ],
-    gradient: "from-cyan-500/10 to-cyan-600/10",
-    iconBg: "from-cyan-100 to-cyan-200",
-    iconColor: "text-cyan-600"
-  }
+  
 ];
 
 
